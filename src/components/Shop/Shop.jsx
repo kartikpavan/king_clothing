@@ -2,7 +2,7 @@ import React from "react";
 
 const Shop = () => {
   return (
-    <div>
+    <div className="p-6 w-screen">
       <h1 className="text-2xl"> My Item Shop </h1>
     </div>
   );

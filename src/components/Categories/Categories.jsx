@@ -32,34 +32,23 @@ const categories = [
       "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202207/ezgif-sixteen_nine_384.jpg?size=948:533",
   },
 ];
-const Categories = ({ id, title }) => {
+const Categories = ({id, title}) => {
   return (
-    <div
-      id="categories-container"
-      className="p-6 w-screen flex justify-between flex-wrap gap-8"
-    >
+    <>
       {categories.map((item) => {
         return (
-          <div
-            key={item.id}
-            id="single-category-container"
-            className="min-w-[30%] h-[340px] flex items-center justify-center flex-auto border border-black overflow-hidden "
-          >
-            <div
-              id="bg-image"
-              className="w-full h-full flex justify-center items-center hover:scale-110 duration-1000"
-              style={{
-                backgroundImage: `url(${item.imgUrl})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-              }}
-            >
-              <div
-                id="category-body "
-                className="flex flex-col items-center p-8 border border-black gap-4 bg-[rgba(255,255,255,0.5)]"
-              >
-                <h1 className="text-3xl text-black  ">{item.title}</h1>
-                <button className="text-black text-xl border border-black p-4 hover:bg-white hover:text-gray-900 duration-300">
+          <div key={item.id} id="single-category-container"
+               className="min-w-[30%] h-[340px] flex items-center justify-center flex-auto border border-black overflow-hidden">
+            <div id="bg-image" className="w-full h-full flex justify-center items-center hover:scale-110 duration-1000"
+                 style={{
+                   backgroundImage: `url(${item.imgUrl})`,
+                   backgroundPosition: "center",
+                   backgroundSize: "cover",
+                 }}>
+              <div id="category-body" className="flex flex-col items-center p-8 border border-black gap-4 bg-[rgba(255,255,255,0.5)]">
+                <h1 className="text-3xl text-black ">{item.title}</h1>
+                <button
+                  className="text-black text-xl border border-black p-4 hover:bg-white hover:text-gray-900 duration-300">
                   SHOP NOW
                 </button>
               </div>
@@ -67,7 +56,7 @@ const Categories = ({ id, title }) => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 
