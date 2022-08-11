@@ -1,7 +1,7 @@
 import React from "react";
-import { firebaseApp } from "../utils/firebase.config";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { BsGoogle } from "react-icons/bs";
+import {firebaseApp} from "../utils/firebase.config";
+import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {BsGoogle} from "react-icons/bs";
 
 const Login = () => {
 	const auth = getAuth(firebaseApp);
