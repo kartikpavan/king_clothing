@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import {Navbar} from "./components/index.js";
+import {Navbar, Shop} from "./components/index.js";
 
 const App = () => {
   return (
@@ -11,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/shop" element={<Shop/>}/>
       </Routes>
     </div>
   );

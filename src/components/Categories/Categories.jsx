@@ -31,7 +31,7 @@ const Categories = ({id, title}) => {
   return (
     <div
       id="categories-container"
-      className="p-4 w-screen flex justify-between flex-wrap gap-8"
+      className="p-6 w-screen flex justify-between flex-wrap gap-8"
     >
       {categories.map((item) => {
         return (
@@ -50,7 +50,7 @@ const Categories = ({id, title}) => {
                    className="flex flex-col items-center p-8 border border-black gap-4 bg-[rgba(255,255,255,0.5)]">
                 <h1 className="text-3xl text-black  ">{item.title}</h1>
                 <button
-                  className=" text-black border border-black p-4 hover:bg-white hover:text-gray-900 duration-300">SHOP
+                  className="text-black text-xl border border-black p-4 hover:bg-white hover:text-gray-900 duration-300">SHOP
                   NOW
                 </button>
               </div>
