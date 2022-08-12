@@ -1,53 +1,31 @@
 import React from "react";
+import { SignUpForm } from "../components/index.js";
 import { BsGoogle } from "react-icons/bs";
+import { signInWithGooglePopUp, createUserDocumentFromAuth } from "../utils/firebase.config.js";
 
-import { firebaseApp, db } from "../utils/firebase.config";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const Login = () => {
-	const auth = getAuth(firebaseApp);
-	const provider = new GoogleAuthProvider();
+   //Google Sign In function
+   const googleSignIn = async () => {
+      const { user } = await signInWithGooglePopUp();
+      console.log("user", user); //! Remove this log at later stage
+      const userDocRef = await createUserDocumentFromAuth(user);
+   };
 
-	const signIn = async () => {
-		const { user } = await signInWithPopup(auth, provider);
-		console.log("user", user);
-		await createUserDocumentFromAuth(user);
-	};
-
-	const createUserDocumentFromAuth = async (user) => {
-		const userDocRef = doc(db, "users", user.uid);
-		const userSnapshot = await getDoc(userDocRef);
-
-		if (!userSnapshot.exists()) {
-			const { displayName, email } = user;
-			const createdAt = new Date();
-			try {
-				await setDoc(userDocRef, {
-					displayName,
-					email,
-					createdAt,
-				});
-			} catch (error) {
-				console.log(error.message);
-			}
-		}
-		return userDocRef;
-	};
-
-	return (
-		<div className="p-6 w-screen h-[80vh]">
-			<div>
-				<button
-					className="border border-black p-2 hover:bg-black hover:text-white text-lg flex items-center gap-3 hover:scale-105 duration-150"
-					onClick={signIn}
-				>
-					<BsGoogle size={22} />
-					SIGN IN
-				</button>
-			</div>
-		</div>
-	);
+   return (
+      <div className="p-6 w-screen h-[80vh]">
+         <div className="flex items-center justify-around">
+            <button
+               className="border border-black p-2 hover:bg-black hover:text-white text-lg flex items-center gap-3 hover:scale-105 duration-150"
+               onClick={googleSignIn}
+            >
+               <BsGoogle size={22} />
+               SIGN IN
+            </button>
+            <SignUpForm />
+         </div>
+      </div>
+   );
 };
 
 export default Login;
