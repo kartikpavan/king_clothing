@@ -4,16 +4,15 @@ import Home from "./pages/Home";
 import Authentication from "./pages/Authentication";
 import About from "./pages/About";
 import { Footer, Navbar, Shop } from "./components/index.js";
-
 const App = () => {
 	return (
 		<div>
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/login" element={<Authentication />} />
-				<Route path="/shop" element={<Shop />} />
-				<Route path="/about" element={<About />} />
+				<Route exact path="/" element={<Home />} />
+				<Route exact path="/shop" element={<Shop />} />
+				<Route exact path="/about" element={<About />} />
+				<Route exact path="/login" element={<Authentication />} />
 			</Routes>
 			<Footer />
 		</div>

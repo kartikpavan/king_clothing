@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { customSignIn, createUserDocumentFromAuth } from "../../utils/firebase.config";
-
+import { useGlobalContext } from "../../context/userContext";
 const defaultFormFields = {
 	displayName: "",
 	email: "",
@@ -14,6 +14,8 @@ const SignUpForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
+	//State coming from CONTEXT API
+	const { setCurrentUser } = useGlobalContext();
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
@@ -33,6 +35,7 @@ const SignUpForm = () => {
 			console.log(user);
 			await createUserDocumentFromAuth(user, { displayName });
 			setFormFields(defaultFormFields);
+			setCurrentUser(user);
 		} catch (error) {
 			setErr(error.message);
 			console.log("error while registering user->", error.message);

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsGoogle } from "react-icons/bs";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
 import {
 	signInWithGooglePopUp,
 	createUserDocumentFromAuth,
 	customLogin,
 } from "../../utils/firebase.config";
+import { useGlobalContext } from "../../context/userContext";
 
 const defaultFormFields = {
 	email: "",
@@ -18,6 +19,9 @@ const LoginForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
+	//State coming from Context API
+	const { setCurrentUser } = useGlobalContext();
+	let navigate = useNavigate();
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
@@ -28,8 +32,10 @@ const LoginForm = () => {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await customLogin(email, password);
-			console.log(response);
+			const { user } = await customLogin(email, password);
+			setFormFields(defaultFormFields);
+			setCurrentUser(user);
+			navigate("/", { replace: true });
 		} catch (error) {
 			setErr(error.message);
 			console.log("error while registering user->", error.message);
@@ -40,6 +46,8 @@ const LoginForm = () => {
 	const googleSignIn = async () => {
 		const { user } = await signInWithGooglePopUp();
 		console.log("user", user); //! Remove this log at later stage
+		setCurrentUser(user);
+		navigate("/", { replace: true });
 		await createUserDocumentFromAuth(user);
 	};
 
