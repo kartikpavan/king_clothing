@@ -5,13 +5,7 @@ import { BsBag } from "react-icons/bs";
 import { useGlobalContext } from "../../context/userContext";
 import { signOutUser } from "../../utils/firebase.config";
 const Navbar = () => {
-	const { currentUser, setCurrentUser } = useGlobalContext();
-
-	const signOutHandler = async () => {
-		await signOutUser();
-		setCurrentUser(null);
-		location.reload();
-	};
+	const { currentUser } = useGlobalContext();
 
 	return (
 		<nav className="w-screen h-24 px-6 border-b-2 border-black">
@@ -26,7 +20,7 @@ const Navbar = () => {
 						<Link
 							className="border border-red-400 p-2 text-red-800 hover:bg-white duration-300"
 							to={"/"}
-							onClick={signOutHandler}
+							onClick={signOutUser}
 						>
 							LOG OUT
 						</Link>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { customSignIn, createUserDocumentFromAuth } from "../../utils/firebase.config";
-import { useGlobalContext } from "../../context/userContext";
 const defaultFormFields = {
 	displayName: "",
 	email: "",
@@ -14,8 +14,7 @@ const SignUpForm = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
-	//State coming from CONTEXT API
-	const { setCurrentUser } = useGlobalContext();
+	let navigate = useNavigate();
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
@@ -24,7 +23,6 @@ const SignUpForm = () => {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-
 		if (password !== confirmPassword) {
 			//! password and confirm password check
 			setErr("..........Password Did not match ");
@@ -35,7 +33,7 @@ const SignUpForm = () => {
 			console.log(user);
 			await createUserDocumentFromAuth(user, { displayName });
 			setFormFields(defaultFormFields);
-			setCurrentUser(user);
+			navigate("/", { replace: true });
 		} catch (error) {
 			setErr(error.message);
 			console.log("error while registering user->", error.message);

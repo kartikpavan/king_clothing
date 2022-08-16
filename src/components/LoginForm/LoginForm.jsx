@@ -7,7 +7,6 @@ import {
 	createUserDocumentFromAuth,
 	customLogin,
 } from "../../utils/firebase.config";
-import { useGlobalContext } from "../../context/userContext";
 
 const defaultFormFields = {
 	email: "",
@@ -20,7 +19,6 @@ const LoginForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
 	//State coming from Context API
-	const { setCurrentUser } = useGlobalContext();
 	let navigate = useNavigate();
 
 	const handleChange = (e) => {
@@ -34,7 +32,6 @@ const LoginForm = () => {
 		try {
 			const { user } = await customLogin(email, password);
 			setFormFields(defaultFormFields);
-			setCurrentUser(user);
 			navigate("/", { replace: true });
 		} catch (error) {
 			setErr(error.message);
@@ -45,8 +42,6 @@ const LoginForm = () => {
 	//GOOGLE SIGN IN METHOD
 	const googleSignIn = async () => {
 		const { user } = await signInWithGooglePopUp();
-		console.log("user", user); //! Remove this log at later stage
-		setCurrentUser(user);
 		navigate("/", { replace: true });
 		await createUserDocumentFromAuth(user);
 	};
