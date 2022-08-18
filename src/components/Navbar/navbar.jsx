@@ -6,19 +6,22 @@ import { useGlobalContext } from "../../context/userContext";
 import { signOutUser } from "../../utils/firebase.config";
 const Navbar = () => {
 	const { currentUser } = useGlobalContext();
-
 	return (
 		<nav className="w-screen h-24 px-6 border-b-2 border-black">
 			<div className="flex items-center justify-between pr-2">
 				<Link to={"/"} className="cursor-pointer">
 					<img src={Logo} alt={"logo"} className="w-24 h-24" />
 				</Link>
-				<div id="navbar-items" className="flex items-center justify-between gap-6 text-2xl">
+				<div
+					id="navbar-items"
+					className="flex items-center justify-between gap-2 text-lg md:gap-6 md:text-2xl"
+				>
 					<Link to={"/shop"}>SHOP</Link>
 					<Link to={"/about"}>ABOUT</Link>
 					{currentUser ? (
 						<Link
-							className="border border-red-400 p-2 text-red-800 hover:bg-white duration-300"
+							className="border border-red-400 p-2 text-red-800 
+                     hover:bg-white duration-300"
 							to={"/"}
 							onClick={signOutUser}
 						>
@@ -33,7 +36,11 @@ const Navbar = () => {
 						</Link>
 					)}
 
-					<Link to={"/"} className="relative">
+					<Link
+						to={"/"}
+						className="relative"
+						onClick={() => document.getElementById("my-drawer").click()}
+					>
 						<BsBag size={36} />
 						<span className="absolute top-3 right-3 text-sm"> 12 </span>
 					</Link>

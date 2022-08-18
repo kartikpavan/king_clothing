@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { customSignIn, createUserDocumentFromAuth } from "../../utils/firebase.config";
+
 const defaultFormFields = {
 	displayName: "",
 	email: "",
@@ -23,6 +24,7 @@ const SignUpForm = () => {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
+		x;
 		if (password !== confirmPassword) {
 			//! password and confirm password check
 			setErr("..........Password Did not match ");

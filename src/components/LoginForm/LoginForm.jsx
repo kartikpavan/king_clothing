@@ -93,7 +93,8 @@ const LoginForm = () => {
 
 					<button
 						type={"submit"}
-						className="border border-black py-2 mt-3 text-2xl max-w-sm   w-full bg-black text-white hover:text-black hover:bg-white duration-200"
+						className="border border-black py-2 mt-3 text-2xl max-w-sm   w-full bg-black text-white hover:text-black 
+                        hover:bg-white duration-200"
 					>
 						Sign In
 					</button>
