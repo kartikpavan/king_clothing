@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 import { useGlobalContext } from "../../context/userContext";
+import { CartContext } from "../../context/CartContext";
 import { signOutUser } from "../../utils/firebase.config";
+
 const Navbar = () => {
 	const { currentUser } = useGlobalContext();
+	const { cartCount } = useContext(CartContext);
 	return (
 		<nav className="h-24 w-screen border-b-2 border-black px-6">
 			<div className="flex items-center justify-between pr-2">
@@ -20,8 +23,7 @@ const Navbar = () => {
 					<Link to={"/about"}>ABOUT</Link>
 					{currentUser ? (
 						<Link
-							className="border border-red-400 p-2 text-red-800 
-                     duration-300 hover:bg-white"
+							className="border border-red-400 p-2 text-red-800  duration-300 hover:bg-white"
 							to={"/"}
 							onClick={signOutUser}
 						>
@@ -36,14 +38,16 @@ const Navbar = () => {
 						</Link>
 					)}
 
-					<Link
+					<div
 						to={""}
-						className="relative"
+						className="relative cursor-pointer"
 						onClick={() => document.getElementById("my-drawer").click()}
 					>
 						<BsBag size={36} />
-						<span className="absolute top-3 right-3 text-sm"> 12 </span>
-					</Link>
+						<span className="absolute top-3 right-3 text-sm font-semibold">
+							{cartCount}
+						</span>
+					</div>
 				</div>
 			</div>
 		</nav>

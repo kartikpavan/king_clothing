@@ -6,3 +6,4 @@ export { default as LoginForm } from "./LoginForm/LoginForm";
 export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as Cart } from "./Cart/Cart";
 export { default as CartItem } from "./CartItem/CartItem";
+export { default as Checkout } from "./Checkout/Checkout";

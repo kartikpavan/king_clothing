@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Authentication from "./pages/Authentication";
 import Shop from "./pages/Shop";
-import { Cart, Footer, Navbar } from "./components/index.js";
+import { Cart, Checkout, Footer, Navbar } from "./components/index.js";
 
 const App = () => {
 	return (
@@ -16,15 +16,16 @@ const App = () => {
 					<Navbar />
 					<Routes>
 						<Route exact path="/" element={<Home />} />
-						<Route exact path="/shop" element={<Shop />} />
-						<Route exact path="/about" element={<About />} />
-						<Route exact path="/login" element={<Authentication />} />
+						<Route path="/shop" element={<Shop />} />
+						<Route path="/about" element={<About />} />
+						<Route path="/login" element={<Authentication />} />
+						<Route path="/checkout" element={<Checkout />} />
 					</Routes>
 					<Footer />
 				</div>
 				<div className="drawer-side">
 					<label for="my-drawer" className="drawer-overlay"></label>
-					<ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+					<ul className="menu w-80 overflow-y-auto bg-base-100 p-4 text-base-content">
 						{/* <!-- Sidebar content here --> */}
 						<Cart />
 					</ul>
