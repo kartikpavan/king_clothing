@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.add-to-cart-btn {
+	@apply absolute top-60 hidden w-[80%] border border-black bg-black p-2 text-2xl text-white opacity-70 duration-300 hover:bg-white hover:text-black hover:opacity-90 group-hover:block;
+}
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Oswald', sans-serif;
-
+	padding: 0;
+	margin: 0;
+	font-family: "Oswald", sans-serif;
 }

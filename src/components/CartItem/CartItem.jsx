@@ -3,8 +3,8 @@ const CartItem = ({ cartItem }) => {
 	return (
 		<div>
 			<li>
-				<h2>{name}</h2>
-				<span>{quantity}</span>
+				<h2>NAME : {name}</h2>
+				<span>Qty : {quantity}</span>
 			</li>
 		</div>
 	);
