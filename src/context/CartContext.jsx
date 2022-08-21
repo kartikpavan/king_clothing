@@ -29,7 +29,23 @@ export const CartContextProvider = ({ children }) => {
 	};
 
 	// Decrement item from the cart
-	const decreaseQuantity = () => {};
+	const decreaseQuantity = (productToRemove) => {
+		//find the cart item to remove
+		// check if the quantity is equal to 1, if it is remove the item from the cart.
+		setCartItems((currentItem) => {
+			if (currentItem.find((item) => item.id === productToRemove.id).quantity === 1) {
+				return currentItem.filter((item) => item.id !== productToRemove.id);
+			} else {
+				return currentItem.map((item) => {
+					if (item.id === productToRemove.id) {
+						return { ...item, quantity: item.quantity - 1 };
+					} else {
+						return item;
+					}
+				});
+			}
+		});
+	};
 
 	//Remove Single Item from cart
 	const removeSingleItem = (productToRemove) => {
@@ -45,7 +61,14 @@ export const CartContextProvider = ({ children }) => {
 
 	return (
 		<CartContext.Provider
-			value={{ cartItems, addItemToCart, cartCount, removeAllCartItems, removeSingleItem }}
+			value={{
+				cartItems,
+				addItemToCart,
+				cartCount,
+				removeAllCartItems,
+				removeSingleItem,
+				decreaseQuantity,
+			}}
 		>
 			{children}
 		</CartContext.Provider>

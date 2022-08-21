@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 const Checkout = () => {
-	const { cartItems, removeSingleItem } = useContext(CartContext);
+	const { cartItems, removeSingleItem, decreaseQuantity, addItemToCart } =
+		useContext(CartContext);
 	// const { id, name, imageUrl, price, fakePrice } = cartItems;
 
 	return (
@@ -29,9 +30,9 @@ const Checkout = () => {
 									</td>
 									<td>{name}</td>
 									<td className="cursor-pointer">
-										<span>&#9665;</span>
+										<span onClick={() => decreaseQuantity(item)}>&#9665;</span>
 										{quantity}
-										<span>&#9655;</span>
+										<span onClick={() => addItemToCart(item)}>&#9655;</span>
 									</td>
 									<td>₹{price}</td>
 									<td onClick={() => removeSingleItem(item)}>
